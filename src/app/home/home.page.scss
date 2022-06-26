@@ -1,0 +1,46 @@
+.logout {
+  margin-left: 10px;
+}
+
+.profile {
+  display: flex;
+}
+
+.avatar {
+  margin: 10px 10px 10px 0;
+  height: 50px;
+  width: 50px;
+}
+
+.avatar img {
+  height: 50px;
+  width: 50px;
+  margin-right: 15px;
+}
+
+.placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: silver;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  text-align: center;
+}
+
+.movielist {
+  margin-top: 40px;
+}
+
+.movie {
+  width: 75px;
+  height: 75px;
+}
+
+.search {
+  width: calc(100% - 30px);
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+}

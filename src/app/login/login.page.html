@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form (ngSubmit)="login()" [formGroup]="credentials ">
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      ></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="(email.dirty || email.touched) && email.errors"
+        >Please input a valid email</ion-note
+      >
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      ></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="(password.dirty || password.touched) && password.errors"
+        >Please input a valid password</ion-note
+      >
+    </ion-item>
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid"
+      >Sign in</ion-button
+    >
+    <ion-button
+      type="button"
+      expand="block"
+      color="secondary"
+      [disabled]="!credentials.valid"
+      (click)="register()"
+      >Create Account</ion-button
+    >
+  </form>
+</ion-content>

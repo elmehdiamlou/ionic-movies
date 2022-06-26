@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="logout">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div slot="end" class="profile">
+      <ion-title>{{profile?.email}}</ion-title>
+      <div class="avatar">
+        <ion-avatar (click)="changeImage()">
+          <img
+            *ngIf="profile?.imageUrl; else placeheolder_avatar;"
+            [src]="profile.imageUrl"
+          />
+          <ng-template #placeheolder_avatar>
+            <div class="placeholder">
+              <p>Select avatar</p>
+            </div>
+          </ng-template>
+        </ion-avatar>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input
+      type="search"
+      class="search"
+      placeholder="Search"
+      (input)="searchMovie($event.target.value)"
+    />
+  </label>
+  <ion-list class="movielist">
+    <ion-item button *ngFor="let item of movies" [routerLink]="[item.id]">
+      <ion-avatar class="movie" slot="start">
+        <img [src]="imageBaseURL + '/w92' + item.poster_path" />
+      </ion-avatar>
+      <ion-label class="ion-text--wrap">
+        <h3>{{item.title}}</h3>
+        <p>{{item.release_date | date: 'y'}}</p>
+      </ion-label>
+      <ion-badge slot="end" color="primary"> {{item.vote_average}} </ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll *ngIf="search === ''" (ionInfinite)="loadMovies($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
